@@ -1,4 +1,4 @@
-student_count = 11
+
 #lets put all the students into an array
 students = [
     "Dr. Hannibal Lecter", 
