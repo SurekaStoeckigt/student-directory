@@ -20,8 +20,11 @@ def print_header
   puts "---------------"
 end
 def print(students)
-    students.each_with_index do |student, index|
-      puts "#{index + 1}  #{student[:name]} #{student[:cohort]}"
+    index = 0
+    while index < students.length do 
+    #students.each_with_index do |student, index|
+      puts "#{index + 1}  #{students[index][:name]} #{students[index][:cohort]}"
+      index = index + 1
     end 
 end
 
