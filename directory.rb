@@ -32,23 +32,29 @@ def print_by_letter(students)
 puts "Enter a letter: "
     letter = gets.chomp
     count = 0
-  students.each do |student|
-    if student[:name].start_with?(letter.upcase, letter.downcase)
-      puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    index = 0
+  while index < students.length do 
+  #students.each do |student|
+    if students[index][:name].start_with?(letter.upcase, letter.downcase)
+      puts "#{students[index][:name]} (#{students[index][:cohort]} cohort)"
       count = count + 1
     else
-    end 
+    end
+    index = index + 1
   end
 end
 
 def print_by_length(students)
     puts "Enter a number: "
     num = gets.chomp.to_i
-  students.each do |student|
-    if student[:name].length <= num
-      puts "#{student[:name]}"
+    index = 0
+  while index < students.length do
+  #students.each do |student|
+    if students[index][:name].length <= num
+      puts "#{students[index][:name]}"
     else
-    end 
+    end
+    index = index + 1
   end  
 end
 
