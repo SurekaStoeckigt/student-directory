@@ -23,22 +23,33 @@ def print(students)
     students.each_with_index do |student, index|
       puts "#{index + 1}  #{student[:name]} #{student[:cohort]}"
     end 
-    puts "Enter a letter: "
+end
+
+def print_by_letter(students)
+puts "Enter a letter: "
     letter = gets.chomp
     count = 0
-    students.each do |student|
+  students.each do |student|
     if student[:name].start_with?(letter.upcase, letter.downcase)
       puts "#{student[:name]} (#{student[:cohort]} cohort)"
       count = count + 1
     else
     end 
-    end
-
+  end
 end
 
-#	by_cohort.each_with_index do |student, index| # print out above results with index
+def print_by_length(students)
+    puts "Enter a number: "
+    num = gets.chomp.to_i
+  students.each do |student|
+    if student[:name].length <= num
+      puts "#{student[:name]}"
+    else
+    end 
+  end  
+end
 
-#		puts "#{index + 1}. - #{student[:name]} in #{student[:cohort]}"
+
 
 def print_footer(names)
   puts "Overall, we have #{names.count} great students"
@@ -47,6 +58,8 @@ end
 students = input_students
 print_header
 print(students)
+print_by_letter(students)
+print_by_length(students)
 print_footer(students)
 
 # input_students 
