@@ -20,10 +20,15 @@ def print_header
   puts "---------------"
 end
 def print(students)
-    students.each do |student|
-        puts "#{student [:name]} (#{student[:cohort]} cohort)"
+    students.each_with_index do |student, index|
+        puts "#{index + 1}  #{student[:name]} #{student[:cohort]}"
     end 
 end
+
+#	by_cohort.each_with_index do |student, index| # print out above results with index
+
+#		puts "#{index + 1}. - #{student[:name]} in #{student[:cohort]}"
+
 def print_footer(names)
   puts "Overall, we have #{names.count} great students"
 end 
