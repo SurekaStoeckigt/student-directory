@@ -21,8 +21,19 @@ def print_header
 end
 def print(students)
     students.each_with_index do |student, index|
-        puts "#{index + 1}  #{student[:name]} #{student[:cohort]}"
+      puts "#{index + 1}  #{student[:name]} #{student[:cohort]}"
     end 
+    puts "Enter a letter: "
+    letter = gets.chomp
+    count = 0
+    students.each do |student|
+    if student[:name].start_with?(letter.upcase, letter.downcase)
+      puts "#{student[:name]} (#{student[:cohort]} cohort)"
+      count = count + 1
+    else
+    end 
+    end
+
 end
 
 #	by_cohort.each_with_index do |student, index| # print out above results with index
