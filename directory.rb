@@ -21,13 +21,17 @@ def input_students
   @students = []
   name = gets.strip
   # while the name is not empty, repat this code
-  puts "Now enter the country of birth".center(@center)
-  country = gets.strip
-  puts "Now enter height".center(@center)
-  height = gets.strip
-  puts "Now enter a hobby".center(@center)
-  hobby = gets.strip
-  cohort = add_cohort
+  if !name.empty?
+    puts "Now enter the country of birth".center(@center)
+    country = gets.strip
+    puts "Now enter height".center(@center)
+    height = gets.strip
+    puts "Now enter a hobby".center(@center)
+    hobby = gets.strip
+    cohort = add_cohort
+  else
+  end
+  
   while !name.empty? do
   # add the student hash to the array
     @students << {name: name, cohort: cohort, country: country, height: height, hobby: hobby}
@@ -54,13 +58,14 @@ def input_students
 end 
 
 def print_student_by_cohort
-cohorts = @students.map
-sorted_by_cohort = {}
-puts "Enter the month of the cohort you would like to see: ".center(@center)
-month = gets.strip.to_sym
-cohorts.each do |student|
-    cohort = student[:cohort]
-    name = student[:name]
+  if !@students.empty?
+    cohorts = @students.map
+    sorted_by_cohort = {}
+    puts "Enter the month of the cohort you would like to see: ".center(@center)
+    month = gets.strip.to_sym
+    cohorts.each do |student|
+      cohort = student[:cohort]
+      name = student[:name]
     if sorted_by_cohort[cohort] == nil
         sorted_by_cohort[cohort] = [name]
     else
@@ -68,18 +73,28 @@ cohorts.each do |student|
     end 
 end 
 puts sorted_by_cohort[month]
+  else
+  end
 end 
 
 def print_header
+  if !@students.empty?
   puts "The students of Villains Academy".center(@center)
   puts "---------------".center(@center)
+  else
+  end
 end
+
 def print(students)
     index = 0
+    if !@students.empty?
     while index < @students.length do 
     #students.each_with_index do |student, index|
       puts "#{index + 1}  #{@students[index][:name]} #{@students[index][:cohort]}, #{@students[index][:country]}".center(@center)
       index = index + 1
+    end 
+    else
+      puts "No students to print"
     end 
 end
 
@@ -87,41 +102,47 @@ def print_by_letter(students)
 puts "Enter a letter: ".center(@center)
     letter = gets.chomp
     count = 0
-    index = 0
-  while index < @students.length do 
-  #students.each do |student|
+    index = 
+  if !@students.empty?
+    while index < @students.length do 
+    #students.each do |student|
     if @students[index][:name].start_with?(letter.upcase, letter.downcase)
       puts "#{@students[index][:name]} (#{@students[index][:cohort]} cohort, #{@students[index][:country]})".center(@center)
       count = count + 1
     else
     end
     index = index + 1
-  end
+    end
+  else
+  end 
 end
 
 def print_by_length(students)
     puts "Enter a number: ".center(@center)
     num = gets.chomp.to_i
     index = 0
-  while index < @students.length do
-  #students.each do |student|
+  if !@students.empty?    
+    while index < @students.length do
+    #students.each do |student|
     if @students[index][:name].length <= num
       puts "#{@students[index][:name]}".center(@center)
     else
     end
     index = index + 1
-  end  
+    end
+  else
+  end 
 end
 
-
-
-
 def print_footer(names)
-  if names.count < 2
-    puts "Overall, we have #{names.count} great student"
+  if !names.empty?
+    if names.count < 2
+      puts "Overall, we have #{names.count} great student".center(@center)
+    else
+      puts "Overall, we have #{names.count} great students".center(@center)
+    end 
   else
-    puts "Overall, we have #{names.count} great students".center(@center)
-  end 
+  end
 end 
 #nothing happens until we call the methods
 students = input_students
