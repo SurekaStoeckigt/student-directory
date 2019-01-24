@@ -4,7 +4,7 @@ cohort_arr = { 1 => :January, 2 => :February, 3 => :March, 4=> :April,
             5 => :May, 6 => :June, 7 => :July, 8 => :August,
             9 => :September, 10 => :October, 11 => :November, 12 => :December}
             puts "Enter number of the month of the cohort to join: ".center(@center)
-            num = gets.chomp.to_i
+            num = gets.strip.to_i
             if cohort_arr.has_key?num
             cohort = cohort_arr[num]
             else 
@@ -19,14 +19,14 @@ def input_students
   puts "To finish, just hit return twice".center(@center)
   #create an empty array
   @students = []
-  name = gets.chomp
+  name = gets.strip
   # while the name is not empty, repat this code
   puts "Now enter the country of birth".center(@center)
-  country = gets.chomp
+  country = gets.strip
   puts "Now enter height".center(@center)
-  height = gets.chomp
+  height = gets.strip
   puts "Now enter a hobby".center(@center)
-  hobby = gets.chomp
+  hobby = gets.strip
   cohort = add_cohort
   while !name.empty? do
   # add the student hash to the array
@@ -35,16 +35,16 @@ def input_students
         puts "Now we have #{@students.count} student".center(@center)
     else
     puts "Now we have #{@students.count} students".center(@center)
-end 
+    end 
   #get another name from the usesr
-    name = gets.chomp
+    name = gets.strip
     if !name.empty?
       puts "Now enter the country of birth".center(@center)
-      country = gets.chomp
+      country = gets.strip
       puts "Now enter height".center(@center)
-      height = gets.chomp
+      height = gets.strip
       puts "Now enter a hobby".center(@center)
-      hobby = gets.chomp
+      hobby = gets.strip
       cohort = add_cohort
     else
     end
@@ -57,7 +57,7 @@ def print_student_by_cohort
 cohorts = @students.map
 sorted_by_cohort = {}
 puts "Enter the month of the cohort you would like to see: ".center(@center)
-month = gets.chomp.to_sym
+month = gets.strip.to_sym
 cohorts.each do |student|
     cohort = student[:cohort]
     name = student[:name]
