@@ -5,12 +5,27 @@ def input_students
   students = []
   name = gets.chomp
   # while the name is not empty, repat this code
+  puts "Now enter the country of birth"
+  country = gets.chomp
+  puts "Now enter height"
+  height = gets.chomp
+  puts "Now enter a hobby"
+  hobby = gets.chomp
   while !name.empty? do
   # add the student hash to the array
-    students << {name: name, cohort: :november}
+    students << {name: name, cohort: :november, country: country, height: height, hobby: hobby}
     puts "Now we have #{students.count} students"
   #get another name from the usesr
     name = gets.chomp
+    puts "Now enter the country of birth"
+    if !name.empty?
+      country = gets.chomp
+      puts "Now enter height"
+      height = gets.chomp
+      puts "Now enter a hobby"
+      hobby = gets.chomp
+    else
+    end
   end
   #return the array of students
   students
@@ -23,7 +38,7 @@ def print(students)
     index = 0
     while index < students.length do 
     #students.each_with_index do |student, index|
-      puts "#{index + 1}  #{students[index][:name]} #{students[index][:cohort]}"
+      puts "#{index + 1}  #{students[index][:name]} #{students[index][:cohort]}, #{students[index][:country]}"
       index = index + 1
     end 
 end
@@ -36,7 +51,7 @@ puts "Enter a letter: "
   while index < students.length do 
   #students.each do |student|
     if students[index][:name].start_with?(letter.upcase, letter.downcase)
-      puts "#{students[index][:name]} (#{students[index][:cohort]} cohort)"
+      puts "#{students[index][:name]} (#{students[index][:cohort]} cohort, #{students[index][:country]})"
       count = count + 1
     else
     end
