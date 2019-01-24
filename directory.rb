@@ -31,7 +31,11 @@ def input_students
   while !name.empty? do
   # add the student hash to the array
     @students << {name: name, cohort: cohort, country: country, height: height, hobby: hobby}
+    if @students.count == 1
+        puts "Now we have #{@students.count} student".center(@center)
+    else
     puts "Now we have #{@students.count} students".center(@center)
+end 
   #get another name from the usesr
     name = gets.chomp
     if !name.empty?
@@ -113,7 +117,11 @@ end
 
 
 def print_footer(names)
-  puts "Overall, we have #{names.count} great students".center(@center)
+  if names.count < 2
+    puts "Overall, we have #{names.count} great student"
+  else
+    puts "Overall, we have #{names.count} great students".center(@center)
+  end 
 end 
 #nothing happens until we call the methods
 students = input_students
