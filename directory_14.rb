@@ -134,8 +134,10 @@ def try_load_students
     load_students(filename)
      puts "Loaded #{@students.count} from #{filename}".center(@center)
   else # if it doesn't exist
-    puts "Sorry, #{filename} doesn't exist.".center(@center)
-    exit # quit the program
+    filename = "students.csv"
+    load_students("students.csv")
+    #puts "Sorry, #{filename} doesn't exist.".center(@center)
+    #exit # quit the program
   end
 end
 
