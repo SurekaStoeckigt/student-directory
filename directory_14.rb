@@ -89,6 +89,7 @@ def input_students
     else
     end
   end
+  puts "Input students successful."
 end
 
 def add_students(name, cohort, country, hobby)
@@ -100,6 +101,7 @@ def show_students
   print_header
   print_student_list
   print_footer
+  puts "Show students successful."
 end
 
 def print_header
@@ -128,6 +130,7 @@ def save_students
     file.puts csv_line
   end
   file.close
+  puts "Save students successful."
 end
 
 def load_students(filename = @default_file)
@@ -137,6 +140,7 @@ def load_students(filename = @default_file)
   add_students(name, cohort, country, hobby)
   end
   file.close
+  puts "Load students successful."
 end
 
 def try_load_students
