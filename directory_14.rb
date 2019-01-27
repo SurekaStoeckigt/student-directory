@@ -1,3 +1,4 @@
+require 'csv'
 @center = 100
 @students = [] # an empty array accessible to all methods
 @loaded_file = ""
@@ -126,11 +127,13 @@ def save_students
   filename = STDIN.gets.chomp
   #file = File.open(filename, "w")
   # iterate over the array of students
-  File.open(filename, "w") do |file| 
+  #File.open(filename, "w") do |file| 
+  CSV.open(filename, "wb") do |file|
   @students.each do |student|
-    student_data = [student[:name], student[:cohort], student[:country], student[:hobby]]
-    csv_line = student_data.join(",")
-    file.puts csv_line
+    #student_data = [student[:name], student[:cohort], student[:country], student[:hobby]]
+    #csv_line = student_data.join(",")
+    #file.puts csv_line
+    file << [student[:name], student[:cohort], student[:country], student[:hobby]]
   end
   end
   puts "Save students successful."
@@ -139,11 +142,13 @@ end
 def load_students(filename = @default_file)
   puts "Enter filename to load students from: "
   filename = STDIN.gets.chomp
-  File.open(filename, "r") do |file|
-  file.readlines.each do |line|
-  name, cohort, country, hobby = line.chomp.split(',')
+  #File.open(filename, "r") do |file|
+  CSV.foreach(filename) do |line|
+  #file.readlines.each do |line|
+  #name, cohort, country, hobby = line.chomp.split(',')
+  name, cohort, country, hobby = line
   add_students(name, cohort, country, hobby)
-  end
+  #end
   end
   puts "Load students successful."
 end
