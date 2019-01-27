@@ -1,5 +1,7 @@
 @center = 100
 @students = [] # an empty array accessible to all methods
+@loaded_file = ""
+@default_file = "students.csv"
 
 def add_cohort
 cohort_arr = { 1 => :January, 2 => :February, 3 => :March, 4=> :April,
@@ -14,6 +16,14 @@ cohort_arr = { 1 => :January, 2 => :February, 3 => :March, 4=> :April,
             end
             cohort 
 
+end
+
+def num_students(num)
+  if num == 1 then puts "Now we have #{num} great student" else puts "Now we have #{num} great students" end
+end
+
+def overall_students(num)
+  if num == 1 then puts "Overall, we have #{num} great student" else puts "Overall, we have #{num} great students" end
 end
 
 def print_menu
@@ -66,7 +76,8 @@ def input_students
     # add the student hash to the array
     #students << {name: name, cohort: :november}
     add_students(name, cohort, country, hobby)
-    puts "Now we have #{@students.count} students".center(@center)
+    #puts "Now we have #{@students.count} students".center(@center)
+    num_students(@students.count)
     # get another name from the user
     name = STDIN.gets.chomp
     if !name.empty? 
@@ -103,7 +114,8 @@ def print_student_list
 end
 
 def print_footer
-  puts "Overall, we have #{@students.count} great students".center(@center)
+  overall_students(@students.count)
+  #puts "Overall, we have #{@students.count} great students".center(@center)
 end
 
 def save_students
@@ -118,7 +130,7 @@ def save_students
   file.close
 end
 
-def load_students(filename = "students.csv")
+def load_students(filename = @default_file)
   file = File.open(filename, "r")
   file.readlines.each do |line|
   name, cohort, country, hobby = line.chomp.split(',')
@@ -129,16 +141,18 @@ end
 
 def try_load_students
   filename = ARGV.first# first argument from the command line
-  return if filename.nil? # get out of the method if it isn't given
-  if File.exists?(filename) # if it exists
-    load_students(filename)
-     puts "Loaded #{@students.count} from #{filename}".center(@center)
+  if filename.nil? # get out of the method if it isn't given
+  filename = @default_file
+  puts "Loaded default file: #{filename}."
+  elsif File.exists?(filename) # if it exists
+    filename = @loaded_file
   else # if it doesn't exist
-    filename = "students.csv"
-    load_students("students.csv")
-    #puts "Sorry, #{filename} doesn't exist.".center(@center)
-    #exit # quit the program
+    puts "Sorry, #{filename} doesn't exist.".center(@center)
+    exit # quit the program
   end
+  load_students(filename)
+  puts "Loaded #{@students.count} students from #{filename}".center(@center)
+  
 end
 
 try_load_students
