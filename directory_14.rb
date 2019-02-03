@@ -145,6 +145,7 @@ def load_students(filename = @default_file)
   #File.open(filename, "r") do |file|
   CSV.foreach(filename) do |line|
   #file.readlines.each do |line|
+  #file.open do |line|
   #name, cohort, country, hobby = line.chomp.split(',')
   name, cohort, country, hobby = line
   add_students(name, cohort, country, hobby)
@@ -171,3 +172,31 @@ end
 
 try_load_students
 interactive_menu
+
+=begin
+def add_student
+    name = STDIN.gets.chomp
+    while !name.empty? do
+        @students << {name: name, cohort: :november}
+        puts "Now we have #{@students.count} students"
+        name = STDIN.gets.chomp
+    end
+    puts "Input students successful"    ### HERE
+end
+=end
+=begin 
+# changing load_students to use do...end block
+def load_students(filename = "students.csv")
+  puts  "Which file are we loading?"
+  filename = STDIN.gets.chomp
+  File.open(filename, "r") do |file|
+  #file = File.open(filename, "r")
+  file.readlines.each do |line|
+  name, cohort = line.chomp.split(',')
+    @students << {name: name, cohort: cohort.to_sym}  ##### NOT CHANGED YET. 
+  end
+end
+    puts "#{@students.count} students from #{filename} have been loaded. Select 2 to view. " 
+  # file.close
+end
+=end
